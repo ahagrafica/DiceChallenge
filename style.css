@@ -44,6 +44,8 @@ button:hover{
     background-color: lemonchiffon;
 }
 .container{
+    max-width: 1140px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
