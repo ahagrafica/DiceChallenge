@@ -2,26 +2,37 @@ const playButton = document.querySelector('.play');
 const imageDice1 = document.querySelector('.dice1');
 const imageDice2 = document.querySelector('.dice2');
 
-let results = [];
+const titulo = document.querySelector('h1');
 
-playButton.addEventListener('click', startGame);
+// let results = [];
+
+let resultDice1;
+let resultDice2;
 
 function startGame() {
 	addRandomNumbers();
 	showDicesResult();
+	if(resultDice1 > resultDice2){
+		titulo.textContent = 'Ganador Player 1';
+	} else if(resultDice1 < resultDice2){
+		titulo.textContent ='Ganador Player 2';
+	} else{
+		titulo.textContent = 'Empate';
+	}
 }
 
-function addRandomNumbers() {
-	results.push(Math.floor( Math.random() * 6 ) + 1);
-	results.push(Math.floor( Math.random() * 6 ) + 1);
+function addRandomNumbers(){
+	resultDice1 = Math.floor( Math.random() * 6 ) + 1;
+	resultDice2 = Math.floor( Math.random() * 6 ) + 1;
 }
 
 function showDicesResult() {
-	imageDice1.setAttribute('src', getImgPath(results[0]));
-	imageDice2.setAttribute('src', getImgPath(results[1]));
+	imageDice1.setAttribute('src', getImgPath(resultDice1));
+	imageDice2.setAttribute('src', getImgPath(resultDice2));
 }
 
 function getImgPath(diceNumber) {
-	return `img/imageDice${diceNumber}.jpg`;
+	return `img/dice${diceNumber}.png`;
 }
 
+playButton.addEventListener('click', startGame);
